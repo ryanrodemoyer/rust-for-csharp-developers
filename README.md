@@ -6,6 +6,12 @@
 [![.NET](https://img.shields.io/badge/.NET-8.0_%7C_9.0-purple.svg?logo=dotnet)](https://dotnet.microsoft.com/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
+> [!IMPORTANT]
+> ### 🤖 AI-Generated Guide Disclosure
+> **This guide is entirely AI-generated.** While compiled and structured against modern .NET and Rust practices, code snippets, conceptual mappings, or external links may contain inaccuracies or drift over time.
+>
+> **Community contributions are welcome!** Please feel free to [open an issue](https://github.com/ryanrodemoyer/rust-for-csharp-developers/issues) for fixes, updates, and enhancements, or submit a [Pull Request](CONTRIBUTING.md).
+
 > **The definitive Rosetta Stone, architectural guide, and curated resource hub for C# and .NET engineers mastering Rust.**
 
 Whether you are looking to eliminate garbage collection pauses, write ultra-fast systems infrastructure, compile to WebAssembly, or interop native Rust code with existing .NET applications, this guide and directory bridges the conceptual gap between the .NET and Rust ecosystems.
