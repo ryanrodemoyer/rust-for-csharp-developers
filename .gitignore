@@ -3,6 +3,7 @@
 *.pdb
 Cargo.lock
 .idea/
-.vscode/
-*.swp
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
 *.swo
