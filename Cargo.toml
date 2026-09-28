@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "examples/sqlserver-merge",
+]
+resolver = "2"

@@ -21,19 +21,20 @@ Whether you are looking to eliminate garbage collection pauses, write ultra-fast
    - [Common Types & Collections](#common-types--collections)
    - [LINQ vs. Iterator Adapters](#linq-vs-iterator-adapters)
    - [Ecosystem & Popular Crates vs. NuGet Packages](#ecosystem--popular-crates-vs-nuget-packages)
-3. [Curated Existing Resources](#-curated-existing-resources)
+3. [Recommended VS Code Setup (For Visual Studio / C# Devs)](#-recommended-vs-code-setup-for-visual-studio--c-devs)
+4. [Curated Existing Resources](#-curated-existing-resources)
    - [GitHub Repositories](#github-repositories)
    - [Deep-Dive Articles & Blog Series](#deep-dive-articles--blog-series)
    - [Conference Talks & Videos](#conference-talks--videos)
    - [Cheat Sheets & Quick References](#cheat-sheets--quick-references)
    - [Foundational Rust Material](#foundational-rust-material)
-4. [C# and Rust Interoperability (FFI)](#-c-and-rust-interoperability-ffi)
+5. [C# and Rust Interoperability (FFI)](#-c-and-rust-interoperability-ffi)
    - [Top Interop Libraries](#top-interop-libraries)
    - [Architectural Patterns](#architectural-patterns)
-5. [The 5 Critical Mental Model Shifts](#-the-5-critical-mental-model-shifts)
-6. [Side-by-Side Code Walkthroughs](#-side-by-side-code-walkthroughs)
-7. [Contributing](#-contributing)
-8. [License](#-license)
+6. [The 5 Critical Mental Model Shifts](#-the-5-critical-mental-model-shifts)
+7. [Side-by-Side Code Walkthroughs](#-side-by-side-code-walkthroughs)
+8. [Contributing](#-contributing)
+9. [License](#-license)
 
 ---
 
@@ -152,6 +153,43 @@ In C#, LINQ operates over `IEnumerable<T>`. In Rust, you call `.iter()`, `.iter_
 | **MediatR** | Message-passing with `tokio::sync::mpsc` or `flume` | In-process decoupling and event publishing |
 | **FluentValidation** | `validator`, `garde` | Validation attributes and custom logic |
 | **AutoMapper** | Idiomatic `From<T>` and `Into<T>` trait implementations | Explicit, zero-cost type conversions |
+
+---
+
+## 🛠️ Recommended VS Code Setup (For Visual Studio / C# Devs)
+
+Coming from Visual Studio or the C# Dev Kit, you are accustomed to rich IntelliSense, immediate compiler diagnostics, effortless NuGet management, and intuitive step-through debugging. You do not need a bloated extension pack to get this in Rust. The following curated setup gives you an equivalent full-IDE experience in VS Code.
+
+This repository includes a pre-configured [`.vscode/extensions.json`](.vscode/extensions.json) and [`.vscode/settings.json`](.vscode/settings.json).
+
+### The Essential Extension Stack
+
+| Extension | VS Code ID | What It Replaces From the .NET / Visual Studio World |
+| :--- | :--- | :--- |
+| **[rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)** | `rust-lang.rust-analyzer` | **Roslyn / OmniSharp / C# Dev Kit.** The official language server. Provides smart completion, go-to-definition, type inference hints, parameter hints, and code actions. *(Note: Avoid the deprecated legacy "Rust" extension).* |
+| **[CodeLLDB](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb)** | `vadimcn.vscode-lldb` | **CoreCLR / vsdbg Debugger.** Native debugger integration. Set breakpoints, step through code, inspect registers, memory, and variables. |
+| **[Even Better TOML](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)** | `tamasfe.even-better-toml` | **`.csproj` / XML Schema Validation.** Gives full syntax highlighting, schema validation, and autocompletion for `Cargo.toml`. |
+| **[Dependi](https://marketplace.visualstudio.com/items?itemName=fill-labs.dependi)** | `fill-labs.dependi` | **NuGet Package Manager GUI.** Displays the latest crate versions, outdated dependencies, and feature flags directly inside `Cargo.toml`. |
+| **[Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)** | `usernamehw.errorlens` | **Visual Studio Error List & In-Editor Squiggles.** Highlights compiler and borrow-checker diagnostics inline directly on the line of code. Essential for learning Rust because the compiler's feedback is famously thorough. |
+
+### Recommended `settings.json`
+
+Add these settings to your workspace (`.vscode/settings.json`) for automatic formatting and Roslyn-like background analysis with Clippy:
+
+```json
+{
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true
+  },
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.inlayHints.typeHints.enable": true,
+  "rust-analyzer.inlayHints.parameterHints.enable": true,
+  "rust-analyzer.inlayHints.chainingHints.enable": true
+}
+```
+
+> **Tip for C# Devs:** Setting `"rust-analyzer.check.command": "clippy"` makes `rust-analyzer` run Rust's linter (Clippy) on save, functioning just like Roslyn analyzers in Visual Studio to teach you idiomatic Rust patterns in real time.
 
 ---
 
